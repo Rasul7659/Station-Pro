@@ -326,18 +326,16 @@ export default function App() {
   return (
     <div className="app" data-theme={tweaks.theme} data-density={tweaks.density}>
       <Rail active={screen} onNav={setScreen} />
-      <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minWidth: 0, overflow: 'hidden' }}>
-        <Header onLogout={() => setOperator(null)} onShowHotkeys={() => setShowHotkeyOverlay(true)} />
-        <main style={{ flex: 1, overflow: 'auto', minHeight: 0 }}>
-          {screen === 'pumps'   && <DispatcherScreen />}
-          {screen === 'store'   && <StoreScreen />}
-          {screen === 'tanks'   && <TanksScreen />}
-          {screen === 'receive' && <ReceiveScreen />}
-          {screen === 'cash'    && <CashScreen />}
-          {screen === 'reports' && <ReportsScreen />}
-        </main>
-        <StatusBar />
-      </div>
+      <Header onLogout={() => setOperator(null)} onShowHotkeys={() => setShowHotkeyOverlay(true)} />
+      <main className="main">
+        {screen === 'pumps'   && <DispatcherScreen />}
+        {screen === 'store'   && <StoreScreen />}
+        {screen === 'tanks'   && <TanksScreen />}
+        {screen === 'receive' && <ReceiveScreen />}
+        {screen === 'cash'    && <CashScreen />}
+        {screen === 'reports' && <ReportsScreen />}
+      </main>
+      <StatusBar />
 
       {dispenseOpen && selectedPump && (
         <DispenseModal pump={selectedPump} onClose={closeDispense} />

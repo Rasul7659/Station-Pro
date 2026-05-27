@@ -207,15 +207,13 @@ export default function DispatcherScreen() {
   const pumps          = useStore((s) => s.pumps);
   const selectedPumpId = useStore((s) => s.selectedPumpId);
   const selectPump     = useStore((s) => s.selectPump);
-  const tweaks         = useStore((s) => s.tweaks);
-
   const active  = pumps.filter((p) => p.state === 'active').length;
   const idle    = pumps.filter((p) => p.state === 'idle').length;
   const errors  = pumps.filter((p) => p.state === 'error' || p.state === 'offline').length;
 
   return (
     <div className="disp">
-      <div className="disp-main">
+      <div className="pumps-area">
         <div className="card" style={{ display: 'flex', flexDirection: 'column', minHeight: 0, height: '100%' }}>
           <div className="card-h">
             <span className="ttl">Колонки · 12</span>
@@ -233,10 +231,14 @@ export default function DispatcherScreen() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="selected-area">
+        <SidePanel />
+      </div>
+      <div className="log-area">
         <EventLog />
       </div>
-      <div className="disp-side">
-        <SidePanel />
+      <div className="tanks-area">
         <TanksMini />
       </div>
     </div>
